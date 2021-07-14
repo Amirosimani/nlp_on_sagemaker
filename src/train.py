@@ -26,6 +26,8 @@ if __name__ == "__main__":
     parser.add_argument("--output_data_dir", type=str, default=os.environ["SM_OUTPUT_DATA_DIR"])
     parser.add_argument("--model_dir", type=str, default=os.environ["SM_MODEL_DIR"])
     parser.add_argument("--n_gpus", type=str, default=os.environ["SM_NUM_GPUS"])
+    parser.add_argument("--training_dir", type=str, default=os.environ["SM_CHANNEL_TRAIN"])
+    parser.add_argument("--test_dir", type=str, default=os.environ["SM_CHANNEL_TEST"])
 
     args, _ = parser.parse_known_args()
 
@@ -43,7 +45,16 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
     # Load dataset
-    train_dataset, test_dataset = load_dataset("imdb", split=["train", "test"])
+    train_file = f"{args.training_dir}/train.csv"
+    validate_file = f"{args.test_dir}/validate.csv"
+#     train_dataset, test_dataset = load_dataset("imdb", split=["train", "test"])
+    dataset = load_dataset('csv', data_files={'train': train_file,
+                                             'test': validate_file})
+    
+    train_dataset = dataset['train']
+    test_dataset = dataset['test']
+    logger.info(f" loaded train_dataset length is: {len(train_dataset)}")
+    logger.info(f" loaded test_dataset length is: {len(test_dataset)}")
 
     # Preprocess train dataset
     train_dataset = train_dataset.map(
