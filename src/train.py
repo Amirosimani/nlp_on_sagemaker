@@ -1,14 +1,12 @@
-from transformers import AutoModelForSequenceClassification, Trainer, TrainingArguments
-from transformers.trainer_utils import get_last_checkpoint
 
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support
-from datasets import load_dataset
-import logging
-import sys
-import argparse
 import os
+import sys
+import logging
+import argparse
 from datasets import load_dataset
-from transformers import AutoTokenizer
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+from transformers.trainer_utils import get_last_checkpoint
+from transformers import AutoModelForSequenceClassification, Trainer, TrainingArguments, AutoTokenizer
 
 
 # Set up logging
@@ -124,14 +122,14 @@ if __name__ == "__main__":
         trainer.train(resume_from_checkpoint=args.output_dir)
     else:
         trainer.train()
-#     # evaluate model
-#     eval_result = trainer.evaluate(eval_dataset=test_dataset)
+    # evaluate model
+    eval_result = trainer.evaluate(eval_dataset=test_dataset)
 
-#     # writes eval result to file which can be accessed later in s3 ouput
-#     with open(os.path.join(args.output_data_dir, "eval_results.txt"), "w") as writer:
-#         print(f"***** Eval results *****")
-#         for key, value in sorted(eval_result.items()):
-#             writer.write(f"{key} = {value}\n")
+    # writes eval result to file which can be accessed later in s3 ouput
+    with open(os.path.join(args.output_data_dir, "eval_results.txt"), "w") as writer:
+        print(f"***** Eval results *****")
+        for key, value in sorted(eval_result.items()):
+            writer.write(f"{key} = {value}\n")
 
     # Saves the model to s3
     trainer.save_model(args.model_dir)

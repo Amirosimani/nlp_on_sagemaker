@@ -5,8 +5,8 @@
 - [X] Women’s clothing reviews dataset
 - [X] SageMaker pre-processing if required do it in the Studio notebook
 - [X] SageMaker managed training with HuggingFace integration
-- [ ] Managed Spot training + checkpointing
-- [ ] plot metrics (optional)
+- [X] Managed Spot training + checkpointing
+- [X] plot metrics (optional)
 - [ ] ~~Explainability: Clarify SHAP values (optional)~~
 - [ ] hosting endpoints
 - [ ] show python SDK
