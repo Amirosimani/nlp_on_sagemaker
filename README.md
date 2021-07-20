@@ -8,7 +8,10 @@
 - [X] Managed Spot training + checkpointing
 - [X] plot metrics (optional)
 - [ ] ~~Explainability: Clarify SHAP values (optional)~~
-- [ ] hosting endpoints
-- [ ] show python SDK
-- [ ] boto3 for testing the endpoint
+- [X] hosting endpoints
+- [X] show python SDK
+- [X] boto3 for testing the endpoint
+- [ ] neo (optional)
+- [ ] elastic inference (optional)
+- [ ] huggingface model (optional)
 
