@@ -133,3 +133,4 @@ if __name__ == "__main__":
 
     # Saves the model to s3
     trainer.save_model(args.model_dir)
+    tokenizer.save_pretrained(args.model_dir)
