@@ -8,10 +8,8 @@
 - [X] Managed Spot training + checkpointing
 - [X] plot metrics (optional)
 - [ ] ~~Explainability: Clarify SHAP values (optional)~~
-- [X] hosting endpoints
+- [X] hosting endpoints with HF managed endpoints
 - [X] show python SDK
 - [X] boto3 for testing the endpoint
 - [ ] neo (optional)
 - [ ] elastic inference (optional)
-- [ ] huggingface model (optional)
-
