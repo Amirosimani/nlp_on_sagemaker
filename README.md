@@ -11,5 +11,6 @@
 - [X] hosting endpoints with HF managed endpoints
 - [X] show python SDK
 - [X] boto3 for testing the endpoint
+- [X] Profiler
 - [ ] neo (optional)
 - [ ] elastic inference (optional)
